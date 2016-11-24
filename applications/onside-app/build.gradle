@@ -1,0 +1,18 @@
+apply from: "../../kotlin.gradle"
+
+jar {
+    baseName = "onside"
+    version = "0.0.1-SNAPSHOT"
+}
+
+apply plugin: "org.springframework.boot"
+
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile "io.damo.aspen:aspen-spring:${aspenVersion}"
+    testCompile "com.squareup.okhttp3:okhttp:3.4.2"
+}

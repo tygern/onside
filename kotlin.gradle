@@ -1,0 +1,16 @@
+apply plugin: "kotlin"
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
+}
+
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+
+    testCompile "junit:junit:4.12"
+    testCompile "io.damo.aspen:aspen:${aspenVersion}"
+    testCompile "org.assertj:assertj-core:3.6.0"
+}
