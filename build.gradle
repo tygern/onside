@@ -1,16 +1,18 @@
 buildscript {
     ext {
-        kotlinVersion = "1.1-M03"
+        kotlinVersion = "1.0.5-2"
         springBootVersion = "1.4.2.RELEASE"
+        springVersion = "4.3.4.RELEASE"
+        jacksonVersion = "2.8.5"
         aspenVersion = "2.0.0"
+        okHttpVersion = "3.4.2"
     }
     repositories {
         mavenCentral()
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 

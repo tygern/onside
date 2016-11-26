@@ -1,3 +1,5 @@
 rootProject.name="onside"
 
 include "applications:onside-app"
+
+include "components:competitions"
