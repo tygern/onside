@@ -2,6 +2,7 @@ package com.tygern.onside.competitions
 
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod
+import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestOperations
 
 class CompetitionClient(
@@ -17,10 +18,16 @@ class CompetitionClient(
             .body
             .map(CompetitionResponse::toCompetition)
 
-    fun get(competitionId: Long) = restOperations
-            .getForEntity("$footballUrl/competitions/$competitionId", CompetitionResponse::class.java)
-            .body
-            .toCompetition()
+    fun get(competitionId: Long): Competition? {
+        try {
+            return restOperations
+                    .getForEntity("$footballUrl/competitions/$competitionId", CompetitionResponse::class.java)
+                    .body
+                    .toCompetition()
+        } catch (e: HttpClientErrorException) {
+            return null
+        }
+    }
 
 }
 

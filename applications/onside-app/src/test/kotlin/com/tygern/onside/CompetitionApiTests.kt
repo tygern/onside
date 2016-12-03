@@ -7,12 +7,15 @@ import io.damo.aspen.spring.SpringTestTreeRunner
 import io.damo.aspen.spring.injectValue
 import okhttp3.mockwebserver.MockWebServer
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.runner.RunWith
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod.GET
+import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestTemplate
+
 
 @RunWith(SpringTestTreeRunner::class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = arrayOf("football.url=http://localhost:8999"))
@@ -68,5 +71,13 @@ class CompetitionApiTests : Test({
                         currentMatchday = 7
                 )
         )
+    }
+
+    test("GET /competitions/:competitionId not found") {
+        assertThatExceptionOfType(HttpClientErrorException::class.java)
+                .isThrownBy({
+                    restTemplate.getForEntity("http://localhost:$port/competitions/999", Competition::class.java)
+                })
+                .withMessageContaining("404 null")
     }
 })

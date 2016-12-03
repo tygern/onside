@@ -61,4 +61,10 @@ class CompetitionClientTest : Test({
                 )
         )
     }
+
+    test("get not found") {
+        val result = client.get(999L)
+
+        Assertions.assertThat(result).isNull()
+    }
 })
