@@ -9,7 +9,7 @@ import org.assertj.core.api.Assertions
 class CompetitionClientTest : Test({
 
     val restTemplate = configuredRestTempleate()
-    val server = MockWebServer()
+    var server: MockWebServer? = null
 
     val client = CompetitionClient(
             footballUrl = "http://localhost:8999",
@@ -17,12 +17,14 @@ class CompetitionClientTest : Test({
     )
 
     before {
-        server.setDispatcher(CompetitionDispatcher())
-        server.start(8999)
+        server = MockWebServer().apply {
+            setDispatcher(CompetitionDispatcher())
+            start(8999)
+        }
     }
 
     after {
-        server.shutdown()
+        server?.shutdown()
     }
 
     test("list") {
@@ -46,4 +48,17 @@ class CompetitionClientTest : Test({
         ).asList())
     }
 
+    test("get") {
+        val result = client.get(424L)
+
+        Assertions.assertThat(result).isEqualTo(
+                Competition(
+                        id = 424L,
+                        name = "EC",
+                        year = "2016",
+                        description = "European Championships France 2016",
+                        currentMatchday = 7
+                )
+        )
+    }
 })

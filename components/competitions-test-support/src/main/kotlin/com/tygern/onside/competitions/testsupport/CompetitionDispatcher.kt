@@ -5,7 +5,11 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 
 class CompetitionDispatcher : Dispatcher() {
-    private val LIST_RESPONSE = listResponse()
+
+    companion object {
+        private val LIST_RESPONSE = listResponse()
+        private val SINGLE_RESPONSE = singleResponse()
+    }
 
     override fun dispatch(request: RecordedRequest?): MockResponse {
 
@@ -13,6 +17,11 @@ class CompetitionDispatcher : Dispatcher() {
             "/competitions" -> return MockResponse().apply {
                 setHeader("Content-Type", "application/json")
                 setBody(LIST_RESPONSE)
+            }
+
+            "/competitions/424" -> return MockResponse().apply {
+                setHeader("Content-Type", "application/json")
+                setBody(SINGLE_RESPONSE)
             }
         }
 

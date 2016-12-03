@@ -20,15 +20,17 @@ class CompetitionApiTests : Test({
 
     val port = injectValue("local.server.port", Int::class)
     val restTemplate = RestTemplate()
-    val server = MockWebServer()
+    var server: MockWebServer? = null
 
     before {
-        server.setDispatcher(CompetitionDispatcher())
-        server.start(8999)
+        server = MockWebServer().apply {
+            setDispatcher(CompetitionDispatcher())
+            start(8999)
+        }
     }
 
     after {
-        server.shutdown()
+        server?.shutdown()
     }
 
     test("GET /competitions") {
@@ -52,5 +54,19 @@ class CompetitionApiTests : Test({
                         currentMatchday = 13
                 )
         ).asList())
+    }
+
+    test("GET /competitions/:competitionId") {
+        val response = restTemplate.exchange("http://localhost:$port/competitions/424", GET, null, Competition::class.java)
+
+        assertThat(response.body).isEqualTo(
+                Competition(
+                        id = 424L,
+                        name = "EC",
+                        year = "2016",
+                        description = "European Championships France 2016",
+                        currentMatchday = 7
+                )
+        )
     }
 })

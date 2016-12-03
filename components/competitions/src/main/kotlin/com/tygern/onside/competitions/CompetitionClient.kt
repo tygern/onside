@@ -9,18 +9,25 @@ class CompetitionClient(
         private val restOperations: RestOperations
 ) {
     companion object {
-        val LIST_TYPE = object : ParameterizedTypeReference<List<CompetitionResponse>>() {}
+        private val LIST_TYPE = object : ParameterizedTypeReference<List<CompetitionResponse>>() {}
     }
 
-    fun list(): List<Competition>
-            = restOperations.exchange("$footballUrl/competitions", HttpMethod.GET, null, LIST_TYPE)
-            .body.map {
-        Competition(
-                id = it.id,
-                name = it.league,
-                year = it.year,
-                description = it.caption,
-                currentMatchday = it.currentMatchday
-        )
-    }
+    fun list() = restOperations
+            .exchange("$footballUrl/competitions", HttpMethod.GET, null, LIST_TYPE)
+            .body
+            .map(CompetitionResponse::toCompetition)
+
+    fun get(competitionId: Long) = restOperations
+            .getForEntity("$footballUrl/competitions/$competitionId", CompetitionResponse::class.java)
+            .body
+            .toCompetition()
+
 }
+
+private fun CompetitionResponse.toCompetition() = Competition(
+        id = this.id,
+        name = this.league,
+        year = this.year,
+        description = this.caption,
+        currentMatchday = this.currentMatchday
+)
