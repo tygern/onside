@@ -1,10 +1,10 @@
-package com.tygern.onside.competitions.testsupport
+package com.tygern.onside.testsupport.competitions
 
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 
-class CompetitionDispatcher : Dispatcher() {
+class CompetitionsDispatcher : Dispatcher() {
 
     companion object {
         private val LIST_RESPONSE = listResponse()

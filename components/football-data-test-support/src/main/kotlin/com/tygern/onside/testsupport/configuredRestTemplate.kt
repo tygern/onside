@@ -1,4 +1,4 @@
-package com.tygern.onside.competitions.testsupport
+package com.tygern.onside.testsupport
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule

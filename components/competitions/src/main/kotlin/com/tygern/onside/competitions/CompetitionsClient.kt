@@ -5,13 +5,11 @@ import org.springframework.http.HttpMethod
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestOperations
 
-class CompetitionClient(
+class CompetitionsClient(
         private val footballUrl: String,
         private val restOperations: RestOperations
 ) {
-    companion object {
-        private val LIST_TYPE = object : ParameterizedTypeReference<List<CompetitionResponse>>() {}
-    }
+    private val LIST_TYPE = object : ParameterizedTypeReference<List<CompetitionResponse>>() {}
 
     fun list() = restOperations
             .exchange("$footballUrl/competitions", HttpMethod.GET, null, LIST_TYPE)

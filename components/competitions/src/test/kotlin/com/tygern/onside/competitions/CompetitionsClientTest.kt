@@ -1,24 +1,24 @@
 package com.tygern.onside.competitions
 
-import com.tygern.onside.competitions.testsupport.CompetitionDispatcher
-import com.tygern.onside.competitions.testsupport.configuredRestTempleate
+import com.tygern.onside.testsupport.competitions.CompetitionsDispatcher
+import com.tygern.onside.testsupport.configuredRestTempleate
 import io.damo.aspen.Test
 import okhttp3.mockwebserver.MockWebServer
 import org.assertj.core.api.Assertions
 
-class CompetitionClientTest : Test({
+class CompetitionsClientTest : Test({
 
     val restTemplate = configuredRestTempleate()
     var server: MockWebServer? = null
 
-    val client = CompetitionClient(
+    val client = CompetitionsClient(
             footballUrl = "http://localhost:8999",
             restOperations = restTemplate
     )
 
     before {
         server = MockWebServer().apply {
-            setDispatcher(CompetitionDispatcher())
+            setDispatcher(CompetitionsDispatcher())
             start(8999)
         }
     }

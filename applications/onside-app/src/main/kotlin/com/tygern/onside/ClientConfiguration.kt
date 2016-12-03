@@ -2,7 +2,8 @@ package com.tygern.onside
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.tygern.onside.competitions.CompetitionClient
+import com.tygern.onside.competitions.CompetitionsClient
+import com.tygern.onside.teams.TeamsClient
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -21,6 +22,10 @@ open class ClientConfiguration {
     open fun restOperations(): RestOperations = RestTemplate()
 
     @Bean
-    open fun competitionClient(restOperations: RestOperations)
-            = CompetitionClient(footballUrl, restOperations)
+    open fun competitionsClient(restOperations: RestOperations)
+            = CompetitionsClient(footballUrl, restOperations)
+
+    @Bean
+    open fun teamsClient(restOperations: RestOperations)
+            = TeamsClient(footballUrl, restOperations)
 }

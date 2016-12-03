@@ -1,7 +1,7 @@
 package com.tygern.onside.api
 
 import com.tygern.onside.competitions.Competition
-import com.tygern.onside.competitions.CompetitionClient
+import com.tygern.onside.competitions.CompetitionsClient
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.HttpStatus.OK
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/competitions")
-class CompetitionController @Autowired constructor(val competitionClient: CompetitionClient) {
+class CompetitionsController @Autowired constructor(val competitionsClient: CompetitionsClient) {
     @GetMapping
-    fun list() = competitionClient.list()
+    fun list() = competitionsClient.list()
 
     @GetMapping(path = arrayOf("/{competitionId}"))
     fun get(@PathVariable competitionId: Long): ResponseEntity<Competition?> {
-        val competition = competitionClient.get(competitionId)
+        val competition = competitionsClient.get(competitionId)
         val status = if (competition == null) NOT_FOUND else OK
 
         return ResponseEntity(competition, status)

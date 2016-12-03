@@ -9,13 +9,14 @@ apply plugin: "org.springframework.boot"
 
 dependencies {
     compile project(":components:competitions")
+    compile project(":components:teams")
 
     compile "org.springframework.boot:spring-boot-starter-web"
 
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
 
-    testCompile project(":components:competitions-test-support")
+    testCompile project(":components:football-data-test-support")
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
 

@@ -3,5 +3,6 @@ rootProject.name="onside"
 include "applications:onside-app"
 
 include "components:competitions"
+include "components:teams"
 
-include "components:competitions-test-support"
+include "components:football-data-test-support"

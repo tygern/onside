@@ -1,0 +1,49 @@
+{
+  "_links": {
+    "self": {
+      "href": "http://api.football-data.org/v1/competitions/424/teams"
+    },
+    "competition": {
+      "href": "http://api.football-data.org/v1/competitions/424"
+    }
+  },
+  "count": 24,
+  "teams": [
+    {
+      "_links": {
+        "self": {
+          "href": "http://api.football-data.org/v1/teams/773"
+        },
+        "fixtures": {
+          "href": "http://api.football-data.org/v1/teams/773/fixtures"
+        },
+        "players": {
+          "href": "http://api.football-data.org/v1/teams/773/players"
+        }
+      },
+      "name": "France",
+      "code": "FRA",
+      "shortName": "Fra",
+      "squadMarketValue": "122,250,000 €",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
+    },
+    {
+      "_links": {
+        "self": {
+          "href": "http://api.football-data.org/v1/teams/811"
+        },
+        "fixtures": {
+          "href": "http://api.football-data.org/v1/teams/811/fixtures"
+        },
+        "players": {
+          "href": "http://api.football-data.org/v1/teams/811/players"
+        }
+      },
+      "name": "Romania",
+      "code": "ROU",
+      "squadMarketValue": "222,240,000 €",
+      "shortName": "Rom",
+      "crestUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Flag_of_Romania.svg"
+    }
+  ]
+}

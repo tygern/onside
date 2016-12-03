@@ -1,7 +1,7 @@
 package com.tygern.onside
 
 import com.tygern.onside.competitions.Competition
-import com.tygern.onside.competitions.testsupport.CompetitionDispatcher
+import com.tygern.onside.testsupport.competitions.CompetitionsDispatcher
 import io.damo.aspen.Test
 import io.damo.aspen.spring.SpringTestTreeRunner
 import io.damo.aspen.spring.injectValue
@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate
 
 @RunWith(SpringTestTreeRunner::class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = arrayOf("football.url=http://localhost:8999"))
-class CompetitionApiTests : Test({
+class CompetitionsApiTests : Test({
 
     val port = injectValue("local.server.port", Int::class)
     val restTemplate = RestTemplate()
@@ -27,7 +27,7 @@ class CompetitionApiTests : Test({
 
     before {
         server = MockWebServer().apply {
-            setDispatcher(CompetitionDispatcher())
+            setDispatcher(CompetitionsDispatcher())
             start(8999)
         }
     }
