@@ -5,22 +5,22 @@ import org.springframework.http.HttpMethod
 import org.springframework.web.client.RestOperations
 
 class CompetitionClient(
-        val footballUrl: String,
-        val restOperations: RestOperations
+        private val footballUrl: String,
+        private val restOperations: RestOperations
 ) {
-    fun list(): List<Competition> {
-        val competitionListType = object : ParameterizedTypeReference<List<CompetitionResponse>>() {}
+    companion object {
+        val LIST_TYPE = object : ParameterizedTypeReference<List<CompetitionResponse>>() {}
+    }
 
-        val response = restOperations.exchange("$footballUrl/competitions", HttpMethod.GET, null, competitionListType)
-
-        return response.body.map {
-            Competition(
-                    id = it.id,
-                    name = it.league,
-                    year = it.year,
-                    description = it.caption,
-                    currentMatchday = it.currentMatchday
-            )
-        }
+    fun list(): List<Competition>
+            = restOperations.exchange("$footballUrl/competitions", HttpMethod.GET, null, LIST_TYPE)
+            .body.map {
+        Competition(
+                id = it.id,
+                name = it.league,
+                year = it.year,
+                description = it.caption,
+                currentMatchday = it.currentMatchday
+        )
     }
 }

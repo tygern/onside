@@ -7,18 +7,18 @@ jar {
 
 apply plugin: "org.springframework.boot"
 
-
 dependencies {
     compile project(":components:competitions")
 
     compile "org.springframework.boot:spring-boot-starter-web"
-    compile "org.springframework.boot:spring-boot-starter-actuator"
 
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
 
+    testCompile project(":components:competitions-test-support")
+
     testCompile "org.springframework.boot:spring-boot-starter-test"
+
     testCompile "io.damo.aspen:aspen-spring:$aspenVersion"
-    testCompile "com.squareup.okhttp3:okhttp:$okHttpVersion"
     testCompile "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
 }

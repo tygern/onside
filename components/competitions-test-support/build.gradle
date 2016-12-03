@@ -1,0 +1,7 @@
+apply from: "../../kotlin.gradle"
+
+dependencies {
+    compile "org.springframework:spring-web:$springVersion"
+    compile "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
+}
