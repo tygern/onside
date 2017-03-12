@@ -23,3 +23,9 @@ dependencies {
     testCompile "io.damo.aspen:aspen-spring:$aspenVersion"
     testCompile "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
 }
+
+project.tasks.findByPath("bootRun").configure {
+    environment = [
+        "FOOTBALL_URL": localProperties.getProperty("football.url")
+    ]
+}
